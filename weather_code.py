@@ -11,11 +11,10 @@ def append_to_csv(data, filename='weather_data.csv'):
     df = pd.DataFrame([data])  
     if os.path.exists(filename):
         existing_df = pd.read_csv(filename)  
-        last_rows = existing_df.tail(10)
+        last_rows = existing_df.tail(20)
         condition = (
-            (last_rows['Timestamp'] == df['Timestamp'].iloc[0]) &
-            (last_rows['Time'] == df['Time'].iloc[0]) &
-            (last_rows['Location'] == df['Location'].iloc[0])
+            (last_rows['Timestamp'] == df['Timestamp'].iloc[0]) |
+            (last_rows['Time'] == df['Time'].iloc[0])
         )
         if condition.any():  # If any row matches the condition
             print("Skipping append....")
