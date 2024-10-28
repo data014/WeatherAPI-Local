@@ -5,18 +5,85 @@ import re
 import time
 from datetime import datetime
 import os
-
+import pytz
 
 def append_to_csv(data, filename='weather_data.csv'):
-    df = pd.DataFrame([data])  # Convert the data dictionary to a DataFrame
+    df = pd.DataFrame([data])  
     if os.path.exists(filename):
-        last_row = pd.read_csv(filename).tail(1)
-        if not last_row.empty and last_row['Time'].values[0] == data['Time']:
-            print("Data with the same time already exists. Skipping append.")
+        existing_df = pd.read_csv(filename)  
+        last_rows = existing_df.tail(10)
+        condition = (
+            (last_rows['Timestamp'] == df['Timestamp'].iloc[0]) &
+            (last_rows['Time'] == df['Time'].iloc[0]) &
+            (last_rows['Location'] == df['Location'].iloc[0])
+        )
+        if condition.any():  # If any row matches the condition
+            print("Skipping append....")
             return
     df.to_csv(filename, mode='a', header=not os.path.exists(filename), index=False)
     print(f"Data appended at {data['Timestamp']}")
 
+
+def extract_precipitation():
+    url = "https://weather.com/en-IN/weather/hourbyhour/l/1d7873a08fd263cfdf311f0c025cc1c1d3081de6381fc557c6ea312a872fc411"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0 Safari/537.36',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive'
+    }
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    data = [] #dict for DF
+    for k in range(24):
+        try:
+            element = soup.find(id=f'detailIndex{k}')
+            summary_data = element.find("summary").get_text(strip=True, separator="\n").split("\n")
+            time.sleep(2)
+            ui_data = element.find("ul").get_text(strip=True, separator="\n").split("\n")
+            rain_ch, feels, wind_dir, wind_spd, hum, uv_idx, rain_amt = [None] * 7
+            for i in range(len(summary_data)):
+                t=summary_data[0]
+                if str(summary_data[i])=="Rain":
+                    rain_ch=int(summary_data[i+1].replace('%',''))
+                    break
+            for i in range(len(ui_data)):
+                if str(ui_data[i])=="Feels Like":
+                    feels=ui_data[i+1]
+                if str(ui_data[i])=="Wind":
+                    wind_dir=ui_data[i+1]
+                    wind_spd=ui_data[i+2]
+                if str(ui_data[i])=="Humidity":
+                    hum=ui_data[i+1].replace('%','')
+                if str(ui_data[i])=="UV Index":
+                    uv_idx=ui_data[i+1]
+                if str(ui_data[i])=="Rain Amount":
+                    rain_amt=ui_data[i+1]
+
+            india_timezone = pytz.timezone('Asia/Kolkata')
+            dt = datetime.now(india_timezone)
+            dt = dt.strftime('%Y-%m-%d %H:%M:%S')
+
+            print("PCP: ", dt,t,rain_ch,feels,wind_dir,wind_spd,hum,uv_idx,rain_amt)
+            # Store to DF
+            data.append({
+                "Timestamp": dt,
+                "Time": t,
+                'Rain Chance (%)': rain_ch,
+                'Feels Like': feels,
+                'Wind Direction': wind_dir,
+                'Wind Speed (km)': wind_spd,
+                'Humidity (%)': hum,
+                'UV Index': uv_idx,
+                'Rain Amount (mm)': rain_amt
+            })
+        except Exception as e:
+            print(f"Error processing detailIndex{k}: {e}")
+    df = pd.DataFrame(data)
+    df.to_csv("Precipitations.csv", index=False)
+    print("LOG: Precipitations SAVED SUCCESSFULLY")
 
 def extract_meteorology(url):
     headers = {
@@ -45,6 +112,7 @@ def extract_meteorology(url):
     except requests.exceptions.RequestException as e:
         print(f"Error occurred during data extraction: {e}")
         return None, None, None
+
 
 def get_data(url):
     try:
@@ -98,10 +166,12 @@ def get_data(url):
                     visibility = data2[i+2]
             if data2[i]=="Moon Phase":
                 moon = str(data2[i+1]).strip()
-            i+=1
-
+        
+        india_timezone = pytz.timezone('Asia/Kolkata')
+        dt = datetime.now(india_timezone)
+        dt = dt.strftime('%Y-%m-%d %H:%M:%S')
         new_row = {
-            "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "Timestamp": dt,
             'Time': t.group(1) if t else None,
             'Location': loc,
             'Temperature': temp,
@@ -131,10 +201,13 @@ def get_data(url):
 
 def process_meteorology():
     url = "https://weather.com/en-IN/weather/today/l/1d7873a08fd263cfdf311f0c025cc1c1d3081de6381fc557c6ea312a872fc411" #powai
-    
+
     while True:
         try:
             get_data(url)
+            extract_precipitation()
         except Exception as e:
             print(e)
         time.sleep(60)
+
+# process_meteorology()

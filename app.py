@@ -1,17 +1,16 @@
 import streamlit as st
 import pandas as pd
 import os
-import io
-from weather_code import process_meteorology
+from weather_code import process_meteorology, extract_precipitation
 
-CSV_FILE_PATH = r"weather_data.csv"  
+CSV_FILE_PATH = r"weather_data.csv"
+PCP_FILE_PATH = r"Precipitations.csv"
 
-def to_excel(df):
-    output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        df.to_excel(writer, index=False, sheet_name='Data')
-    return output.getvalue()
-
+# def to_excel(df):
+#     output = io.BytesIO()
+#     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+#         df.to_excel(writer, index=False, sheet_name='Data')
+#     return output.getvalue()
 
 # Custom CSS for styling
 st.set_page_config(page_title="Weather Data Viewer", layout="wide")
@@ -44,43 +43,25 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown('<div class="title">Live Weather Data Viewer</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">Live Weather Data - Powai</div>', unsafe_allow_html=True)
+st.divider()
+st.write(f"Displaying live data from: **{os.path.basename(CSV_FILE_PATH)}**")
 
+# Load main weather data
+df = pd.read_csv(CSV_FILE_PATH)
+dfp = pd.read_csv(PCP_FILE_PATH) 
 
-if os.path.exists(CSV_FILE_PATH):
-    st.write(f"Displaying live data from: **{os.path.basename(CSV_FILE_PATH)}**")
-
-    data_placeholder = st.empty()
-
-    # Display initial data
-    df = pd.read_csv(CSV_FILE_PATH)
-    with data_placeholder:
-        st.dataframe(df, use_container_width=True)  # Display full data
-        
-        csv = df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="Download CSV",
-            data=csv,
-            file_name='weather_data.csv',
-            mime='text/csv'
-        )
-
-        excel = to_excel(df)
-        st.download_button(
-            label="Download Excel",
-            data=excel,
-            file_name='weather_data.xlsx',
-            mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        )
+# Placeholder-1
+precipitation_placeholder = st.empty()
+with precipitation_placeholder:
+    st.header("Precipitation Data")
+    st.dataframe(dfp, use_container_width=True)
+st.divider()
+# Placeholder-2
+weather_placeholder = st.empty()
+with weather_placeholder:
+    st.header("Weather Data")
+    st.dataframe(df, use_container_width=True) 
     
-    df = pd.read_csv(CSV_FILE_PATH) 
-    with data_placeholder:
-        st.dataframe(df, use_container_width=True) 
-    # Set a refresh button to update data
-    if st.button('Refresh Data'):
-        process_meteorology()
-        df = pd.read_csv(CSV_FILE_PATH)  # Reloads the updated file
-        with data_placeholder:
-            st.dataframe(df, use_container_width=True)  # Display updated data
-else:
-    st.write("The file 'weather_data.csv' does not exist in the specified path.")
+# process start in infinite-loop
+process_meteorology()
