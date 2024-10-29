@@ -1,51 +1,10 @@
-﻿,Timestamp,Time,Location,Temperature,Weather Type,AQI,Description,Feels Like,Day,Night,Sunrise,Sunset,High,Low,Wind (km/h),Humidity,Dew Point,Pressure (mb),UV Index,Visibility,Moon Phase
-0,2024-10-27 13:26:41,13:11,"Powai, Maharashtra",32,Smoke,149,Moderate,37,33,26,06:36,18:07,33,26,14,52%,21,1009.1,9 of 11,3.06,Waning Crescent
-1,2024-10-27 13:27:41,13:26,"Powai, Maharashtra",32,Smoke,149,Moderate,37,33,26,06:36,18:07,33,26,14,53%,22,1009.1,9 of 11,3.06,Waning Crescent
-2,2024-10-27 13:44:37,13:44,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,18,52%,21,1008.1,8 of 11,3.06,Waning Crescent
-3,2024-10-27 13:49:39,13:41,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,18,52%,21,1008.1,8 of 11,3.06,Waning Crescent
-4,2024-10-27 13:57:09,13:53,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,18,52%,21,1008.1,8 of 11,3.06,Waning Crescent
-5,2024-10-27 14:07:14,14:04,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,16,51%,22,1007.1,7 of 11,3.06,Waning Crescent
-6,2024-10-27 14:17:20,14:17,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,16,52%,22,1007.1,7 of 11,3.06,Waning Crescent
-7,2024-10-27 14:22:22,14:21,"Powai, Maharashtra",33,Smoke,156,Moderate,37,33,26,06:36,18:07,33,26,16,52%,22,1007.1,7 of 11,3.06,Waning Crescent
-8,2024-10-27 14:27:25,14:27,"Powai, Maharashtra",33,Smoke,156,Moderate,37,34,26,06:36,18:07,34,26,16,52%,22,1007.1,6 of 11,3.06,Waning Crescent
-9,2024-10-27 14:32:27,14:21,"Powai, Maharashtra",33,Smoke,156,Moderate,37,34,26,06:36,18:07,34,26,16,52%,22,1007.1,7 of 11,3.06,Waning Crescent
-10,2024-10-27 14:36:28,14:27,"Powai, Maharashtra",33,Smoke,159,Moderate,37,34,26,06:36,18:07,34,26,16,52%,22,1007.1,6 of 11,3.06,Waning Crescent
-11,2024-10-27 14:41:31,14:41,"Powai, Maharashtra",33,Smoke,159,Moderate,37,34,26,06:36,18:07,34,26,14,52%,22,1007.1,6 of 11,3.06,Waning Crescent
-12,2024-10-27 19:48:51,19:40,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,11,65%,22,1007.1,0 of 11,3.22,Waning Crescent
-13,2024-10-27 19:49:52,19:49,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,25,06:36,18:07,--,25,11,65%,22,1007.1,0 of 11,3.22,Waning Crescent
-14,2024-10-27 20:06:29,20:02,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,11,66%,22,1007.1,0 of 11,3.22,Waning Crescent
-15,2024-10-27 20:07:29,20:07,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,5,66%,22,1008.1,0 of 11,3.22,Waning Crescent
-16,2024-10-27 20:32:48,20:22,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,5,66%,22,1008.1,0 of 11,3.22,Waning Crescent
-17,2024-10-27 20:34:54,20:34,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,8,66%,22,1008.1,0 of 11,3.22,Waning Crescent
-18,2024-10-27 20:34:54,20:34,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,26,06:36,18:07,--,26,8,66%,22,1008.1,0 of 11,3.22,Waning Crescent
-19,2024-10-27 20:39:31,20:37,"Powai, Maharashtra",29,Haze,166,Moderate,33,33,25,06:36,18:07,--,25,8,67%,22,1008.1,0 of 11,3.22,Waning Crescent
-20,2024-10-28 14:28:02,14:28,"Powai, Maharashtra",32,Smoke,162,Moderate,38,32,27,06:37,18:06,32,/,16,57%,23,1006.1,6 of 11,3.06,Waning Crescent
-21,2024-10-28 15:41:53,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-22,2024-10-28 15:41:54,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-23,2024-10-28 15:41:59,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-24,2024-10-28 15:43:44,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-25,2024-10-28 15:43:44,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-26,2024-10-28 15:43:48,15:37,"Powai, Maharashtra",32,Haze,159,Moderate,39,33,27,06:37,18:06,--,27,18,63%,24,1005.1,3 of 11,3.22,Waning Crescent
-27,2024-10-28 15:52:59,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-28,2024-10-28 15:53:16,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-29,2024-10-28 15:53:48,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-30,2024-10-28 15:54:48,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-31,2024-10-28 15:55:05,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-32,2024-10-28 15:55:37,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-33,2024-10-28 15:56:35,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-34,2024-10-28 15:56:37,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-35,2024-10-28 15:56:53,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-36,2024-10-28 15:57:26,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-37,2024-10-28 15:57:50,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-38,2024-10-28 15:57:50,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-39,2024-10-28 15:57:50,15:52,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,65%,24,1005.1,2 of 11,3.22,Waning Crescent
-40,2024-10-28 16:13:22,16:05,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,66%,24,1005.1,2 of 11,3.22,Waning Crescent
-49,2024-10-28 16:19:50,16:17,"Powai, Maharashtra",32,Haze,162,Moderate,38,33,27,06:37,18:06,--,27,18,66%,24,1005.1,2 of 11,3.22,Waning Crescent
-57,2024-10-28 16:33:22,16:33,"Powai, Maharashtra",31,Haze,163,Moderate,38,33,26,06:37,18:06,--,26,16,66%,24,1005.1,1 of 11,3.22,Waning Crescent
-60,2024-10-28 17:13:11,17:11,"Powai, Maharashtra",31,Haze,163,Moderate,37,33,27,06:37,18:06,--,27,13,68%,24,1006.1,0 of 11,3.22,Waning Crescent
-79,2024-10-28 17:22:19,17:13,"Powai, Maharashtra",31,Haze,163,Moderate,37,33,27,06:37,18:06,--,27,13,68%,24,1006.1,0 of 11,3.22,Waning Crescent
-93,2024-10-28 17:26:58,17:19,"Powai, Maharashtra",31,Haze,163,Moderate,37,33,27,06:37,18:06,--,27,13,68%,24, ,0 of 11,3.22,Waning Crescent
-109,2024-10-28 17:31:25,17:21,"Powai, Maharashtra",31,Haze,166,Moderate,37,33,27,06:37,18:06,--,27,13,69%,24, ,0 of 11,3.22,Waning Crescent
-113,2024-10-28 17:33:13,17:32,"Powai, Maharashtra",31,Haze,166,Moderate,37,33,27,06:37,18:06,--,27,13,69%,24, ,0 of 11,3.22,Waning Crescent
-141,2024-10-28 17:41:24,17:35,"Powai, Maharashtra",31,Haze,166,Moderate,37,33,27,06:37,18:06,--,27,14,70%,24,1006.1,0 of 11,3.22,Waning Crescent
-160,2024-10-28 17:45:56,17:45,"Powai, Maharashtra",31,Haze,166,Moderate,37,33,27,06:37,18:06,--,27,14,73%,25,1006.1,0 of 11,3.22,Waning Crescent
+Date,Time,Location,Temperature,Weather Type,AQI,Description,Feels Like,Day,Night,Sunrise,Sunset,High,Low,Wind (km/h),Humidity,Dew Point,Pressure (mb),UV Index,Visibility (km),Moon Phase
+2024-10-29,10:35,"Powai, Maharashtra",31,Mist,128,Moderate,37.0,32,27,06:37,18:06,32,/,8.0,65%,24,1011.2,5 of 11,1.77,Waning Crescent
+2024-10-29,10:50,"Powai, Maharashtra",31,Mist,128,Moderate,37.0,32,27,06:37,18:06,32,/,0.0,64%,24,1011.2,5 of 11,1.93,Waning Crescent
+2024-10-29,10:47,"Powai, Maharashtra",31,Mist,128,Moderate,37.0,32,27,06:37,18:06,32,/,0.0,65%,24,1011.2,5 of 11,1.93,Waning Crescent
+2024-10-29,11:00,"Powai, Maharashtra",31,Mist,128,Moderate,37.0,32,27,06:37,18:06,32,/,0.0,64%,24,1011.2,5 of 11,1.93,Waning Crescent
+2024-10-29,10:58,"Powai, Maharashtra",31,Mist,128,Moderate,37.0,32,26,06:37,18:06,32,/,0.0,64%,24,1011.2,5 of 11,1.93,Waning Crescent
+2024-10-29,11:54,"Powai, Maharashtra",33,Haze,125,Moderate,40.0,32,26,06:37,18:06,32,/,5.0,64%,25,1010.2,9 of 11,3.22,Waning Crescent
+2024-10-29,12:05,"Powai, Maharashtra",33,Haze,125,Moderate,39.0,33,27,06:37,18:06,33,/,11.0,63%,24,1010.2,10 of 11,3.22,Waning Crescent
+2024-10-29,12:18,"Powai, Maharashtra",33,Haze,125,Moderate,39.0,33,27,06:37,18:06,33,/,11.0,62%,24,1010.2,10 of 11,3.22,Waning Crescent
+2024-10-29,12:30,"Powai, Maharashtra",33,Haze,125,Moderate,40.0,34,27,06:37,18:06,34,/,11.0,61%,24,1010.2,10 of 11,3.22,Waning Crescent

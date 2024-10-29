@@ -6,21 +6,32 @@ import time
 from datetime import datetime
 import os
 import pytz
+from cloud import upload_to_cloud
+from dotenv import load_dotenv
+from urllib.parse import quote_plus 
+load_dotenv()
+PASSWORD = quote_plus(os.getenv("PASSWORD")) 
+
 
 def append_to_csv(data, filename='weather_data.csv'):
-    df = pd.DataFrame([data])  
+    df = pd.DataFrame([data])
     if os.path.exists(filename):
-        existing_df = pd.read_csv(filename)  
-        last_rows = existing_df.tail(20)
-        condition = (
-            (last_rows['Timestamp'] == df['Timestamp'].iloc[0]) |
-            (last_rows['Time'] == df['Time'].iloc[0])
-        )
-        if condition.any():  # If any row matches the condition
+        existing_df = pd.read_csv(filename)
+        last_rows = existing_df.tail(10)
+        time_exists = False
+        for _, row in last_rows.iterrows():
+            if row['Time'] == data['Time']:
+                time_exists = True
+                break
+        if not time_exists:
+            existing_df.loc[len(existing_df)] = data
+            upload_to_cloud(data=data, password=PASSWORD)
+        else:
             print("Skipping append....")
-            return
-    df.to_csv(filename, mode='a', header=not os.path.exists(filename), index=False)
-    print(f"Data appended at {data['Timestamp']}")
+    else:
+        existing_df = df
+    existing_df.to_csv(filename, index=False)
+    print(f"Data appended at {data['Date']}:{data['Time']}")
 
 
 def extract_precipitation():
@@ -42,12 +53,16 @@ def extract_precipitation():
             summary_data = element.find("summary").get_text(strip=True, separator="\n").split("\n")
             time.sleep(2)
             ui_data = element.find("ul").get_text(strip=True, separator="\n").split("\n")
+            print(summary_data)
+            print(ui_data)
             rain_ch, feels, wind_dir, wind_spd, hum, uv_idx, rain_amt = [None] * 7
+            t=summary_data[0]
+            w=summary_data[2]
+            temp=summary_data[3]
             for i in range(len(summary_data)):
-                t=summary_data[0]
                 if str(summary_data[i])=="Rain":
                     rain_ch=int(summary_data[i+1].replace('%',''))
-                    break
+                
             for i in range(len(ui_data)):
                 if str(ui_data[i])=="Feels Like":
                     feels=ui_data[i+1]
@@ -63,15 +78,17 @@ def extract_precipitation():
 
             india_timezone = pytz.timezone('Asia/Kolkata')
             dt = datetime.now(india_timezone)
-            dt = dt.strftime('%Y-%m-%d %H:%M:%S')
+            dt = dt.strftime('%Y-%m-%d')
 
             print("PCP: ", dt,t,rain_ch,feels,wind_dir,wind_spd,hum,uv_idx,rain_amt)
             # Store to DF
             data.append({
-                "Timestamp": dt,
+                "Date": dt,
                 "Time": t,
-                'Rain Chance (%)': rain_ch,
+                "Temperature": temp,
                 'Feels Like': feels,
+                "Weather": w,
+                'Rain Chance (%)': rain_ch,
                 'Wind Direction': wind_dir,
                 'Wind Speed (km)': wind_spd,
                 'Humidity (%)': hum,
@@ -83,6 +100,7 @@ def extract_precipitation():
     df = pd.DataFrame(data)
     df.to_csv("Precipitations.csv", index=False)
     print("LOG: Precipitations SAVED SUCCESSFULLY")
+
 
 def extract_meteorology(url):
     headers = {
@@ -168,9 +186,9 @@ def get_data(url):
         
         india_timezone = pytz.timezone('Asia/Kolkata')
         dt = datetime.now(india_timezone)
-        dt = dt.strftime('%Y-%m-%d %H:%M:%S')
+        dt = dt.strftime('%Y-%m-%d')
         new_row = {
-            "Timestamp": dt,
+            "Date": dt,
             'Time': t.group(1) if t else None,
             'Location': loc,
             'Temperature': temp,
@@ -194,13 +212,11 @@ def get_data(url):
         }
         
         append_to_csv(new_row)
-
     except Exception as e:
         print(f"Exception occurred: {e}")
 
 def process_meteorology():
     url = "https://weather.com/en-IN/weather/today/l/1d7873a08fd263cfdf311f0c025cc1c1d3081de6381fc557c6ea312a872fc411" #powai
-
     while True:
         try:
             get_data(url)
@@ -208,5 +224,3 @@ def process_meteorology():
         except Exception as e:
             print(e)
         time.sleep(60)
-
-# process_meteorology()
