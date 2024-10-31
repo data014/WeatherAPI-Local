@@ -35,37 +35,43 @@ st.markdown('<div class="title">Live Weather Data - Powai</div>', unsafe_allow_h
 st.divider()
 
 # Load all data
-df = pd.read_csv(CSV_FILE_PATH)
-col1 = [
-    "Date", "Time", "Location", "Temperature", "Weather Type", "AQI",
-    "Description", "Feels Like", "Day", "Night", "Sunrise", "Sunset", "High",
-    "Low", "Wind (km/h)", "Humidity", "Dew Point", "Pressure (mb)",
-    "UV Index", "Visibility (km)", "Moon Phase"
-]
-df = df[col1]
-df = df.sort_values(by=["Date","Time"], ascending=False)
-df = df.reset_index(drop=True)
+try:
+    df = pd.read_csv(CSV_FILE_PATH)
+    col1 = [
+        "Date", "Time", "Location", "Temperature", "Weather Type", "AQI",
+        "Description", "Feels Like", "Day", "Night", "Sunrise", "Sunset", "High",
+        "Low", "Wind (km/h)", "Humidity", "Dew Point", "Pressure (mb)",
+        "UV Index", "Visibility (km)", "Moon Phase"
+    ]
+    df = df[col1]
+    df = df.sort_values(by=["Date","Time"], ascending=False)
+    df = df.reset_index(drop=True)
 
-dfp = pd.read_csv(PCP_FILE_PATH) 
-col2 = [
-    "Date", "Time", "Temperature", "Feels Like", "Weather", 
-    "Rain Chance (%)", "Wind Direction", "Wind Speed (km)", 
-    "Humidity (%)", "UV Index", "Rain Amount (mm)"
-]
-dfp = dfp[col2]
+    dfp = pd.read_csv(PCP_FILE_PATH) 
+    col2 = [
+        "Date", "Time", "Temperature", "Feels Like", "Weather", 
+        "Rain Chance (%)", "Wind Direction", "Wind Speed (km)", 
+        "Humidity (%)", "UV Index", "Rain Amount (mm)"
+    ]
+    dfp = dfp[col2]
+except Exception:
+    print("Load data failed!")
 
-# Placeholder-1
-st.subheader("Weather Data (past+current)")
-weather_placeholder = st.empty()
-with weather_placeholder:
-    st.dataframe(df, use_container_width=True) 
+try:
+    # Placeholder-1
+    st.subheader("Weather Data (past+current)")
+    weather_placeholder = st.empty()
+    with weather_placeholder:
+        st.dataframe(df, use_container_width=True) 
+        
+    # Placeholder-2
+    st.subheader("Precipitation Data (24 hours forecast)")
+    precipitation_placeholder = st.empty()
+    with precipitation_placeholder:
+        st.dataframe(dfp, use_container_width=True)
+    st.divider()
+except Exception:
+    print("Error in placeholder")
     
-# Placeholder-2
-st.subheader("Precipitation Data (24 hours forecast)")
-precipitation_placeholder = st.empty()
-with precipitation_placeholder:
-    st.dataframe(dfp, use_container_width=True)
-st.divider()
-
 # process start in infinite-loop
 process_meteorology()
